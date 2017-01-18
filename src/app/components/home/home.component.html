@@ -1,0 +1,51 @@
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row carousel-holder">
+                <h1>Popular movies</h1>
+                <div class="col-md-12">
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <div class="col-md-12">
+                            <div *ngFor='let results of popularMovies | jsonToArray:"results"'>
+                                <div *ngIf="results">
+                                    <carousel [interval]="interval" [noWrap]="noWrapSlides">
+                                        <slide *ngFor='let movie of results | jsonToArray'>
+                                            <img class="slide-image" src="{{urlImage}}{{ movie.backdrop_path }}" >
+                                            <div class="carousel-caption">
+                                                <h1><a [routerLink]="['/detail', movie.id]">{{ movie.original_title }}</a></h1>
+                                            </div>
+                                        </slide>
+                                    </carousel>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <h1>Now playing movies</h1>
+                <div *ngFor='let results of playingMovies | jsonToArray:"results"'>
+                    <div *ngIf="results">
+                        <div class="col-sm-5 col-lg-4 col-md-5" *ngFor='let movie of results | jsonToArray'>
+                            <div class="thumbnail">
+                                <img src="{{urlImage}}{{ movie.backdrop_path }}" alt='{{ movie.original_title }}'>
+                                <div class="caption">
+                                    <h4><a [routerLink]="['/detail', movie.id]">{{ movie.original_title }}</a>
+                                    </h4>
+                                    <p>{{movie.overview}}</p>
+                                </div>
+                                <div class="ratings">
+                                    <p class="pull-right">{{movie.release_date}}</p>
+                                    <p>
+                                        {{ movie.vote_average }} <span class="glyphicon glyphicon-star"> </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
