@@ -30,6 +30,12 @@ export class MovieDetailsComponent implements OnInit {
     return videoUrl;
   }
 
+  buildUrlIMage(id:string) : String {
+    let urlImage:string = this.urlImage + id;
+
+    return urlImage;
+  }
+
   getInitVideo(videos:Array<Object>) {
     let videoKey:SafeResourceUrl;
 

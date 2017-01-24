@@ -20,50 +20,49 @@
                     </div>
                 </div-->
             </div>
-            <!-- /.col-md-8 -->
             <div class="col-md-4">
                 <h1>{{ movieDetails?.original_title }}</h1>
                 <p>{{ movieDetails?.overview }}</p>
-                <span class="label label-info" *ngFor='let genr of movieDetails.genres' style="display: inline-block;">{{genr.name}}</span>
+                <h3>
+                <span class="label label-default" *ngFor='let genr of movieDetails.genres'>{{genr.name}}</span>
+                </h3>
             </div>
-            <!-- /.col-md-4 -->
         </div>
         <!-- /.row -->
-
-        <hr>
-
         <!-- Call to Action Well -->
         <div class="row">
             <div class="col-lg-12">
                 <div class="well text-center">
-                    <a href="{{ movieDetails?.homepage }}" target="_blank">{{ movieDetails.homepage }}</a>
+                    <a href="{{ movieDetails.homepage }}" target="_blank">{{ movieDetails.homepage }}</a>
                 </div>
             </div>
-            <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
-
-        <!-- Content Row -->
-        <div class="row">
-            <div class="col-md-4">
-                <h2>Heading 1</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe rem nisi accusamus error velit animi non ipsa placeat. Recusandae, suscipit, soluta quibusdam accusamus a veniam quaerat eveniet eligendi dolor consectetur.</p>
-                <a class="btn btn-default" href="#">More Info</a>
-            </div>
-            <!-- /.col-md-4 -->
-            <div class="col-md-4">
-                <h2>Heading 2</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe rem nisi accusamus error velit animi non ipsa placeat. Recusandae, suscipit, soluta quibusdam accusamus a veniam quaerat eveniet eligendi dolor consectetur.</p>
-                <a class="btn btn-default" href="#">More Info</a>
-            </div>
-            <!-- /.col-md-4 -->
-            <div class="col-md-4">
-                <h2>Heading 3</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe rem nisi accusamus error velit animi non ipsa placeat. Recusandae, suscipit, soluta quibusdam accusamus a veniam quaerat eveniet eligendi dolor consectetur.</p>
-                <a class="btn btn-default" href="#">More Info</a>
-            </div>
-            <!-- /.col-md-4 -->
-        </div>
-        <!-- /.row -->
+        <tabset>
+            <tab heading="Cast">
+                <div class="col-sm-5 col-lg-4 col-md-5" *ngFor='let cast of movieDetails.credits.cast'>
+                    <div *ngIf="cast.profile_path != null" class="thumbnail">
+                        <img [src]="buildUrlIMage(cast.profile_path)" alt='{{ cast.name }}'>
+                        <div class="caption">
+                            <h4><a [routerLink]="['/detail', cast.id]">{{ cast.name }}</a>
+                            </h4>
+                            <p>{{cast.character}}</p>
+                        </div>
+                    </div>
+                </div>
+            </tab>
+            <tab heading="Crew">
+                <div class="col-sm-5 col-lg-4 col-md-5" *ngFor='let crew of movieDetails.credits.crew'>
+                    <div *ngIf="crew.profile_path != null" class="thumbnail">
+                        <img [src]="buildUrlIMage(crew.profile_path)" alt='{{ crew.name }}'>
+                        <div class="caption">
+                            <h4><a [routerLink]="['/detail', crew.id]">{{ crew.name }}</a></h4>
+                            <p>{{crew.job}}</p>
+                        </div>
+                    </div>
+                </div>
+            </tab>
+        </tabset>
+        
     </div>
 </div>

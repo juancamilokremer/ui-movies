@@ -2,7 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { CarouselModule } from 'ng2-bootstrap';
+import { CarouselModule } from 'ng2-bootstrap/carousel';
+import { TabsModule, TabsetConfig } from 'ng2-bootstrap/tabs';
+//import { TabsetConfig } from 'ng2-bootstrap/tabs/tabset.config';
 import { AppRoutingModule } from './app.routing.module';
 
 import { AppComponent } from './app.component';
@@ -25,9 +27,10 @@ import { HomeComponent } from './components/home/home.component';
     FormsModule,
     HttpModule,
     CarouselModule,
+    TabsModule,
     AppRoutingModule
   ],
-  providers: [MoviesService],
+  providers: [MoviesService,TabsetConfig],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

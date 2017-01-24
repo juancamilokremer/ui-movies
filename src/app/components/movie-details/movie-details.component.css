@@ -15,3 +15,7 @@ img {
         padding: 15px 0;
     }
 }
+.label-default {
+    margin-right: 5px;
+    display: inline-block;
+}
