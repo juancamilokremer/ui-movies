@@ -39,27 +39,53 @@
         </div>
         <!-- /.row -->
         <tabset>
-            <tab heading="Cast">
-                <div class="col-sm-5 col-lg-4 col-md-5" *ngFor='let cast of movieDetails.credits.cast'>
-                    <div *ngIf="cast.profile_path != null" class="thumbnail">
-                        <img [src]="buildUrlIMage(cast.profile_path)" alt='{{ cast.name }}'>
-                        <div class="caption">
-                            <h4><a [routerLink]="['/detail', cast.id]">{{ cast.name }}</a>
-                            </h4>
-                            <p>{{cast.character}}</p>
+            <tab heading="Cast" class="tab-margin">
+                <div *ngFor='let cast of movieDetails.credits.cast'>
+                    <div class="col-sm-5 col-lg-4 col-md-5" *ngIf="cast.profile_path != null">
+                        <div  class="thumbnail">
+                            <img [src]="buildUrlIMage(cast.profile_path)" alt='{{ cast.name }}'>
+                            <div class="caption">
+                                <h4><a [routerLink]="['/detail', cast.id]">{{ cast.name }}</a>
+                                </h4>
+                                <p>{{cast.character}}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </tab>
-            <tab heading="Crew">
-                <div class="col-sm-5 col-lg-4 col-md-5" *ngFor='let crew of movieDetails.credits.crew'>
-                    <div *ngIf="crew.profile_path != null" class="thumbnail">
-                        <img [src]="buildUrlIMage(crew.profile_path)" alt='{{ crew.name }}'>
-                        <div class="caption">
-                            <h4><a [routerLink]="['/detail', crew.id]">{{ crew.name }}</a></h4>
-                            <p>{{crew.job}}</p>
+            <tab heading="Crew" class="tab-margin">
+                <div *ngFor='let crew of movieDetails.credits.crew'>
+                    <div class="col-sm-5 col-lg-4 col-md-5" *ngIf="crew.profile_path != null">
+                        <div  class="thumbnail">
+                            <img [src]="buildUrlIMage(crew.profile_path)" alt='{{ crew.name }}'>
+                            <div class="caption">
+                                <h4><a [routerLink]="['/detail', crew.id]">{{ crew.name }}</a></h4>
+                                <p>{{crew.job}}</p>
+                            </div>
                         </div>
                     </div>
+                </div>
+            </tab>
+            <tab heading="Similar movies" class="tab-margin">
+                <div class="row">
+                <div *ngFor='let similarMovies of movieDetails.similar_movies.results'>
+                    <div class="col-sm-5 col-lg-4 col-md-5" *ngIf="similarMovies.poster_path != null">
+                        <div class="thumbnail">
+                            <img [src]="buildUrlIMage(similarMovies.poster_path)" alt='{{ similarMovies.original_title }}'>
+                            <div class="caption">
+                                <h4><a [routerLink]="['/detail', similarMovies.id]">{{ similarMovies.original_title }}</a>
+                                </h4>
+                                <p>{{similarMovies.overview}}</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">{{similarMovies.release_date}}</p>
+                                <p>
+                                    {{ similarMovies.vote_average }} <span class="glyphicon glyphicon-star"> </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 </div>
             </tab>
         </tabset>
